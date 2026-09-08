@@ -27,3 +27,14 @@ frontend/dist/
 # OS files
 .DS_Store
 Thumbs.db
+# Dependencies
+**/node_modules/
+**/node_modules - Copy/
+
+# Build files
+**/target/
+**/target - Copy/
+
+# Environment files
+.env
+**/.env
