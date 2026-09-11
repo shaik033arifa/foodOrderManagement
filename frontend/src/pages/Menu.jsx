@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-const API_URL = "http://localhost:8080";
+const API_URL = "https://foodordermanagement-production.up.railway.app";
 
 function Menu() {
 

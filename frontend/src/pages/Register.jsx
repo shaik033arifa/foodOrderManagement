@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-const API_URL = "http://localhost:8080";
+const API_URL = "https://foodordermanagement-production.up.railway.app";
 
 function Register() {
 
