@@ -51,4 +51,13 @@ public class OrderController {
                 orderService.getUserOrders(userId)
         );
     }
+    // Get order items
+@GetMapping("/{orderId}/items")
+public ResponseEntity<List<foodorderbackend.entity.OrderItem>> getOrderItems(
+        @PathVariable Long orderId) {
+
+    return ResponseEntity.ok(
+            orderService.getOrderItems(orderId)
+    );
+}
 }
