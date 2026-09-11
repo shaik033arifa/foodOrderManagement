@@ -12,7 +12,11 @@ import java.util.Map;
 @RestController
 @RequestMapping("/cart")
 @CrossOrigin(
-        origins = "http://localhost:5173",
+        origins = {
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://shaik033arifa.github.io"
+},
         methods = {
                 RequestMethod.GET,
                 RequestMethod.POST,
@@ -34,9 +38,14 @@ public class CartController {
     public ResponseEntity<CartItem> addToCart(
             @RequestBody Map<String, Object> request) {
 
-        Long userId = Long.valueOf(request.get("userId").toString());
-        Long foodId = Long.valueOf(request.get("foodId").toString());
-        Integer quantity = Integer.valueOf(request.get("quantity").toString());
+        Long userId =
+                Long.valueOf(request.get("userId").toString());
+
+        Long foodId =
+                Long.valueOf(request.get("foodId").toString());
+
+        Integer quantity =
+                Integer.valueOf(request.get("quantity").toString());
 
         CartItem cartItem =
                 cartService.addToCart(userId, foodId, quantity);
@@ -64,25 +73,26 @@ public class CartController {
 
         return ResponseEntity.ok("Food removed from cart");
     }
-      // Update food quantity
-@PutMapping("/{userId}/update/{foodId}")
-public ResponseEntity<CartItem> updateQuantity(
-        @PathVariable Long userId,
-        @PathVariable Long foodId,
-        @RequestBody Map<String, Object> request) {
 
-    Integer quantity =
-            Integer.valueOf(request.get("quantity").toString());
+    // Update food quantity
+    @PutMapping("/{userId}/update/{foodId}")
+    public ResponseEntity<CartItem> updateQuantity(
+            @PathVariable Long userId,
+            @PathVariable Long foodId,
+            @RequestBody Map<String, Object> request) {
 
-    CartItem cartItem =
-            cartService.updateQuantity(
-                    userId,
-                    foodId,
-                    quantity
-            );
+        Integer quantity =
+                Integer.valueOf(request.get("quantity").toString());
 
-    return ResponseEntity.ok(cartItem);
-}
+        CartItem cartItem =
+                cartService.updateQuantity(
+                        userId,
+                        foodId,
+                        quantity
+                );
+
+        return ResponseEntity.ok(cartItem);
+    }
 
     // Clear cart
     @DeleteMapping("/{userId}/clear")
@@ -94,6 +104,3 @@ public ResponseEntity<CartItem> updateQuantity(
         return ResponseEntity.ok("Cart cleared successfully");
     }
 }
-
-
-      
